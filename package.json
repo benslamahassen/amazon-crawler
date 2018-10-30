@@ -1,0 +1,27 @@
+{
+  "name": "amazon-crawler",
+  "version": "1.0.0",
+  "description": "Web Crawler for Amazon Products",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.vorwaerts.com/human-resources/tasks/back-end-task.git"
+  },
+  "keywords": [
+    "Crawler",
+    "Amazon"
+  ],
+  "author": "Hassen Ben Slama <benslamahassen5@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "cheerio": "^1.0.0-rc.2",
+    "figlet": "^1.2.1",
+    "inquirer": "^6.2.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  }
+}
