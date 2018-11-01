@@ -1,15 +1,32 @@
-
-const cli = require('./utils/cli')
-// index.js
+const cli = require('./utils/cli');
+const utils = require('./utils/utils');
+const chalk = require('chalk');
 
 const run = async () => {
-  // script introduction
+  // intro
   cli.init();
-  // ask questions
-  const answers = await cli.askQuestions();
-  const { KEYWORDS, FILTERS, SAVE, EXTENTION } = answers;
+  // get config for scraper
+  const config = await cli.getConfigInq();
+  const { KEYWORDS, DATA, PAGES } = config;
+  const fileConfig = await cli.saveFileInq();
+  const ext = fileConfig.EXTENTION;
+  if (ext && ext === 'json') {
+    // crawl...
+    // and save in json
+    const res = await utils
+      .scrape(KEYWORDS, DATA, PAGES)
+      .write('results.' + ext);
+    console.log(chalk.blue(`You got ${res.products.length} products`));
+  }
+  if (ext && ext === 'csv') {
+    // crawl...
+    // and save to csv
+    const res = await utils.scrape(KEYWORDS, DATA, PAGES);
+    console.log(chalk.blue(`You got ${res.products.length} products`));
+    utils.exportToCsv(res.products, DATA);
+  }
   // crawl...
-  console.log(KEYWORDS, FILTERS, SAVE, EXTENTION);
+  // and log result
 };
 
 run();

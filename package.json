@@ -18,10 +18,10 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.1",
-    "cheerio": "^1.0.0-rc.2",
     "figlet": "^1.2.1",
+    "fs": "0.0.1-security",
     "inquirer": "^6.2.0",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.2"
+    "json2csv": "^4.2.1",
+    "x-ray": "^2.3.3"
   }
 }
