@@ -1,17 +1,17 @@
-Back End task
+Amazon Crawler
 -------------
 
 ## Introduction:
-Hello! We are very happy that you decided to work on our programming assignment, it will be fun, we promise!
-The idea of the exercise is to see how you can create a crawler for Amazon products
+Built with care and love for :heart: Node.js :heart:
 
 ### Description:
-We want you to retrieve data from Amazon and make it available through an API such as CLI or REST API. The API should allow you to specify the product and the data we expect (e.g. titles, bidders, ratings, etc.).
+A CLI tool that gives	you the ability to scrap/crawl AMAZON for products using custom search keywords and also jump to different pages and export data to JSON/CSV files
 
-### API:
-The API should be dynamic and responsive to user parameters.
+### Try:
+```
+node index.js
+```
+the CLI will walk you through
 
-## Frameworks
-Please use Node.js; otherwise you can take what you want.
-
-P.S: if you have enough time you can also write some Unit tests ;-)
+## Test:
+Loading...
