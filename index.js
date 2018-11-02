@@ -1,6 +1,7 @@
 const cli = require('./utils/cli');
 const utils = require('./utils/utils');
 const chalk = require('chalk');
+const cTable = require('console.table');
 
 const run = async () => {
   // intro
@@ -27,6 +28,10 @@ const run = async () => {
   }
   // crawl...
   // and log result
+  const res = await utils.scrape(KEYWORDS, DATA, PAGES);
+  console.log(chalk.blue(`You got ${res.products.length} products`));
+  console.log(chalk.blue(`Printing the first 20 Products...`));
+  console.table(res.products.slice(0, 20));
 };
 
 run();
