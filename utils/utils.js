@@ -31,19 +31,24 @@ const dataConfig = {
   rating: '.a-icon-alt | trimRating'
 };
 
-//scrape or crawl depending on page number...
-const scrape = (_keywords, _data, _pagesNumber) => {
-  const keywords = _keywords.replace(' ', '%20');
-  const scrappingUrl = `https://www.amazon.com/s/field-keywords=${keywords}`;
+const mapDataToScrape = _data => {
   const dataToScrape = {};
   _data.map(elem => {
     if (dataConfig[elem]) {
       dataToScrape[elem] = dataConfig[elem];
     }
-	});
-	// init scraper with main container and data to get from
-	const scraperConfig = x('.s-item-container', [dataToScrape]);
-	// same for crawler except with pagination
+  });
+  return dataToScrape;
+};
+
+//scrape or crawl depending on page number...
+const scrape = (_keywords, _data, _pagesNumber) => {
+  const keywords = _keywords.replace(' ', '%20');
+  const scrappingUrl = `https://www.amazon.com/s/field-keywords=${keywords}`;
+  const dataToScrape = mapDataToScrape(_data);
+  // init scraper with main container and data to get from
+  const scraperConfig = x('.s-item-container', [dataToScrape]);
+  // same for crawler except with pagination
   const crawlerConfig = scraperConfig
     .paginate('#pagnNextLink@href')
     .limit(_pagesNumber);
@@ -54,15 +59,16 @@ const scrape = (_keywords, _data, _pagesNumber) => {
 };
 
 const exportToCsv = (data, fields) => {
-	// init parser with headers
+  // init parser with headers
   const json2csvParser = new Json2csvParser({ fields });
-	// convert data to csv format
-	const csv = json2csvParser.parse(data);
-	//write data using fs
+  // convert data to csv format
+  const csv = json2csvParser.parse(data);
+  //write data using fs
   fs.writeFileSync('products.csv', csv);
 };
 
 module.exports = {
   scrape,
-  exportToCsv
+  exportToCsv,
+  mapDataToScrape
 };
