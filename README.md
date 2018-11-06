@@ -9,9 +9,11 @@ A CLI tool that gives	you the ability to scrap/crawl AMAZON for products using c
 
 ### Try:
 ```
-node index.js
+npm start
 ```
 the CLI will walk you through
 
 ## Test:
-Loading...
+```
+npm test
+```
